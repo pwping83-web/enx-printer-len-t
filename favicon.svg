@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="ENX printer favicon">
+  <defs>
+    <linearGradient id="bg" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4f46e5" />
+      <stop offset="1" stop-color="#ec4899" />
+    </linearGradient>
+  </defs>
+
+  <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#bg)" />
+
+  <rect x="16" y="20" width="32" height="16" rx="4" fill="#ffffff" />
+  <rect x="20" y="14" width="24" height="10" rx="3" fill="#e0e7ff" />
+  <rect x="22" y="27" width="20" height="4" rx="2" fill="#a5b4fc" />
+
+  <circle cx="44" cy="44" r="10" fill="#fbcfe8" />
+  <circle cx="44" cy="44" r="5" fill="#ec4899" opacity="0.85" />
+  <circle cx="42" cy="41" r="1.5" fill="#ffffff" opacity="0.8" />
+</svg>

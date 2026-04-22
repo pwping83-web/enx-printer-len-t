@@ -1,6 +1,14 @@
 {
   "rewrites": [
     {
+      "source": "/repair",
+      "destination": "https://kernel-afar-30685539.figma.site/"
+    },
+    {
+      "source": "/repair/:path*",
+      "destination": "https://kernel-afar-30685539.figma.site/:path*"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

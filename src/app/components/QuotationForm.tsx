@@ -592,12 +592,12 @@ export default function QuotationForm({
               <div className="p-4 bg-white rounded-xl border border-gray-200 space-y-2.5">
                 <div className="flex justify-between items-center text-sm">
                   <span className="text-gray-500">판매 특가 (단가)</span>
-                  <span className="font-medium text-gray-800">{PURCHASE_PRICE_LABEL}</span>
+                  <span className="font-medium text-gray-700">{PURCHASE_PRICE_LABEL}</span>
                 </div>
                 {formData.quantity > 1 && (
                   <div className="flex justify-between items-center text-sm">
                     <span className="text-gray-500">수량</span>
-                    <span className="font-medium text-gray-800">{formData.quantity}대</span>
+                    <span className="font-medium text-gray-700">{formData.quantity}대</span>
                   </div>
                 )}
                 <div className="flex justify-between items-center text-sm">
@@ -606,18 +606,18 @@ export default function QuotationForm({
                 </div>
                 <div className="border-t border-gray-100 pt-2.5">
                   <div className="flex justify-between items-center">
-                    <span className="text-sm font-semibold text-gray-800">공급가액</span>
-                    <span className="font-bold text-gray-900">{(PURCHASE_PRICE * formData.quantity).toLocaleString()}원</span>
+                    <span className="text-sm font-semibold text-gray-700">공급가액</span>
+                    <span className="text-base font-semibold text-gray-800">{(PURCHASE_PRICE * formData.quantity).toLocaleString()}원</span>
                   </div>
                 </div>
                 <div className="border-t border-gray-100 pt-2.5 space-y-2">
                   <div className="flex justify-between items-center text-sm">
                     <span className="text-gray-500">부가세 (10%)</span>
-                    <span className="text-gray-600">{(purchaseVatAmount * formData.quantity).toLocaleString()}원</span>
+                    <span className="text-sm text-gray-600">{(purchaseVatAmount * formData.quantity).toLocaleString()}원</span>
                   </div>
                   <div className="flex justify-between items-center bg-gray-50 -mx-1 px-3 py-2.5 rounded-lg border border-gray-100">
-                    <span className="text-sm font-semibold text-gray-800">부가세 포함 총금액</span>
-                    <span className="font-black text-indigo-600">{(purchaseTotalWithVat * formData.quantity).toLocaleString()}원</span>
+                    <span className="text-sm font-semibold text-gray-700">부가세 포함 총금액</span>
+                    <span className="text-lg font-bold text-indigo-600">{(purchaseTotalWithVat * formData.quantity).toLocaleString()}원</span>
                   </div>
                 </div>
                 <div className="flex items-center gap-1.5 text-[11px] text-gray-400 pt-1">

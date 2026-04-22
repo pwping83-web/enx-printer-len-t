@@ -191,49 +191,9 @@ export default function Root() {
         </AnimatePresence>
 
         {/* Main Content */}
-        <main className={isHome ? '' : 'pb-24'}>
+        <main>
           <Outlet />
         </main>
-
-        {/* Floating Bottom Navigation Bar - Mobile Only (hidden on home) */}
-        {!isHome && (
-          <motion.div
-            initial={{ y: 100 }}
-            animate={{ y: 0 }}
-            transition={{ type: 'spring', damping: 25, delay: 0.2 }}
-            className="fixed bottom-6 left-0 right-0 z-50 flex justify-center md:hidden px-4 pointer-events-none"
-          >
-            <nav className="pointer-events-auto bg-gray-900/95 backdrop-blur-xl border border-gray-700/50 rounded-2xl shadow-2xl shadow-black/30 flex items-center justify-center gap-1 px-2 py-2">
-              {navItems.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <Link
-                    key={item.to}
-                    to={item.to}
-                    className={`relative flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all ${
-                      item.isActive
-                        ? item.to === '/custom'
-                          ? 'bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-lg shadow-indigo-500/30'
-                          : 'bg-white/15 text-white'
-                        : 'text-gray-400 hover:text-white'
-                    }`}
-                  >
-                    <Icon className="w-5 h-5" />
-                    {item.isActive && (
-                      <motion.span
-                        initial={{ width: 0, opacity: 0 }}
-                        animate={{ width: 'auto', opacity: 1 }}
-                        className="text-xs font-bold overflow-hidden"
-                      >
-                        {item.label}
-                      </motion.span>
-                    )}
-                  </Link>
-                );
-              })}
-            </nav>
-          </motion.div>
-        )}
 
         {/* Toaster */}
         <Toaster

@@ -215,9 +215,10 @@ export default function QuotationForm({
     if (!onSubmit) return;
 
     if (formData.transactionType === 'purchase') {
-      const purchaseSupplyAmount = PURCHASE_PRICE * formData.quantity;
+      const purchaseSupplyAmount = PURCHASE_PRICE;
       onSubmit({
         ...formData,
+        quantity: 1,
         includeInstallationFee: false,
         totalPrice: purchaseSupplyAmount,
       });
@@ -334,6 +335,7 @@ export default function QuotationForm({
               transactionType: 'purchase',
               printerModel: 'Epson-3156-A4',
               printerSize: 'A4',
+              quantity: 1,
             }))}
             className={`px-3 py-2.5 border rounded-xl text-left transition-all relative overflow-hidden ${
               formData.transactionType === 'purchase'
@@ -577,29 +579,12 @@ export default function QuotationForm({
                 </div>
               </div>
 
-              {/* 수량 선택 */}
-              <div className="space-y-2">
-                <label className="block text-sm font-medium text-gray-700">구매 수량</label>
-                <div className="flex items-center gap-3">
-                  <button type="button" onClick={() => setFormData(prev => ({ ...prev, quantity: Math.max(1, prev.quantity - 1) }))} className="w-10 h-10 rounded-xl border border-gray-200 flex items-center justify-center text-gray-600 hover:border-gray-300 hover:bg-gray-50 transition-all font-bold text-lg">−</button>
-                  <span className="w-12 text-center font-bold text-lg text-gray-900">{formData.quantity}</span>
-                  <button type="button" onClick={() => setFormData(prev => ({ ...prev, quantity: prev.quantity + 1 }))} className="w-10 h-10 rounded-xl border border-gray-200 flex items-center justify-center text-gray-600 hover:border-gray-300 hover:bg-gray-50 transition-all font-bold text-lg">+</button>
-                  <span className="text-sm text-gray-500 ml-1">대</span>
-                </div>
-              </div>
-
               {/* 구매 가격 요약 */}
               <div className="p-4 bg-white rounded-xl border border-gray-200 space-y-2.5">
                 <div className="flex justify-between items-center text-sm">
                   <span className="text-gray-500">판매 특가 (단가)</span>
                   <span className="font-medium text-gray-700">{PURCHASE_PRICE_LABEL}</span>
                 </div>
-                {formData.quantity > 1 && (
-                  <div className="flex justify-between items-center text-sm">
-                    <span className="text-gray-500">수량</span>
-                    <span className="font-medium text-gray-700">{formData.quantity}대</span>
-                  </div>
-                )}
                 <div className="flex justify-between items-center text-sm">
                   <span className="text-gray-500">설치비</span>
                   <span className="text-gray-600">없음</span>
@@ -607,17 +592,17 @@ export default function QuotationForm({
                 <div className="border-t border-gray-100 pt-2.5">
                   <div className="flex justify-between items-center">
                     <span className="text-sm font-semibold text-gray-700">공급가액</span>
-                    <span className="text-base font-semibold text-gray-800">{(PURCHASE_PRICE * formData.quantity).toLocaleString()}원</span>
+                    <span className="text-base font-semibold text-gray-800">{PURCHASE_PRICE.toLocaleString()}원</span>
                   </div>
                 </div>
                 <div className="border-t border-gray-100 pt-2.5 space-y-2">
                   <div className="flex justify-between items-center text-sm">
                     <span className="text-gray-500">부가세 (10%)</span>
-                    <span className="text-sm text-gray-600">{(purchaseVatAmount * formData.quantity).toLocaleString()}원</span>
+                    <span className="text-sm text-gray-600">{purchaseVatAmount.toLocaleString()}원</span>
                   </div>
                   <div className="flex justify-between items-center bg-gray-50 -mx-1 px-3 py-2.5 rounded-lg border border-gray-100">
                     <span className="text-sm font-semibold text-gray-700">부가세 포함 총금액</span>
-                    <span className="text-lg font-bold text-indigo-600">{(purchaseTotalWithVat * formData.quantity).toLocaleString()}원</span>
+                    <span className="text-lg font-bold text-indigo-600">{purchaseTotalWithVat.toLocaleString()}원</span>
                   </div>
                 </div>
                 <div className="flex items-center gap-1.5 text-[11px] text-gray-400 pt-1">

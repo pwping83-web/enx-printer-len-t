@@ -27,7 +27,6 @@ import {
   getAllQuotations,
   deleteQuotation,
   deleteAllQuotations,
-  migrateFromLocalStorage,
   SupabaseQuotation,
 } from '../utils/supabaseClient';
 import { toast } from 'sonner';
@@ -59,7 +58,6 @@ export default function Admin() {
   const [quotations, setQuotations] = useState<SavedQuotation[]>([]);
   const [selectedQuotation, setSelectedQuotation] = useState<SavedQuotation | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [isMigrating, setIsMigrating] = useState(false);
 
   useEffect(() => {
     loadQuotations();
@@ -68,8 +66,8 @@ export default function Admin() {
   const loadQuotations = async () => {
     setIsLoading(true);
     try {
-      const supabaseData = await getAllQuotations();
-      const converted: SavedQuotation[] = supabaseData.map((sq: SupabaseQuotation) => ({
+      const storedData = await getAllQuotations();
+      const converted: SavedQuotation[] = storedData.map((sq: SupabaseQuotation) => ({
         id: sq.id,
         data: sq.quotation_data || {
           companyName: sq.company_name,
@@ -97,21 +95,6 @@ export default function Admin() {
       toast.error('견적서를 불러오는데 실패했습니다.');
     } finally {
       setIsLoading(false);
-    }
-  };
-
-  const handleMigration = async () => {
-    if (!confirm('localStorage의 데이터를 Supabase로 마이그레이션하시겠습니까?')) return;
-    setIsMigrating(true);
-    try {
-      await migrateFromLocalStorage();
-      toast.success('마이그레이션이 완료되었습니다!');
-      await loadQuotations();
-    } catch (error) {
-      console.error('❌ 마이그레이션 실패:', error);
-      toast.error('마이그레이션에 실패했습니다.');
-    } finally {
-      setIsMigrating(false);
     }
   };
 

@@ -39,10 +39,6 @@ Vercel에서 **New Project**로 이 저장소를 연결한 뒤 아래 설정을 
 기능에 따라 Vercel 환경변수에 아래 값을 등록하세요.
 
 ```env
-# Supabase (필수 기능 사용 시)
-VITE_SUPABASE_URL=your_supabase_project_url
-VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
-
 # Telegram 알림 (선택)
 VITE_TELEGRAM_BOT_TOKEN=your_telegram_bot_token
 VITE_TELEGRAM_CHAT_ID=your_telegram_chat_id
@@ -53,7 +49,21 @@ VITE_TELEGRAM_CHAT_ID=your_telegram_chat_id
 - 고객 화면에서 견적 작성/서명 플로우 정상 동작
 - Admin 화면 접근 및 설정 저장 확인
 - 이메일 알림(EmailJS) 테스트 전송 확인
-- Supabase 데이터 저장/조회 정상 확인
+- localStorage 데이터 저장/조회 정상 확인
+
+### 5) 자동화 운영 (저장/푸시/배포)
+
+```bash
+# 변경사항 자동 저장(commit) + 자동 push
+npm run auto:ship
+```
+
+- 로컬 자동 저장: `npm run auto:save`
+- 자동 배포 트리거: `main` 브랜치 push
+- GitHub Actions 시크릿 필요값:
+  - `VERCEL_TOKEN`
+  - `VERCEL_ORG_ID`
+  - `VERCEL_PROJECT_ID`
 
 ---
 
@@ -65,7 +75,7 @@ VITE_TELEGRAM_CHAT_ID=your_telegram_chat_id
 - ⚛️ **React 18** + TypeScript
 - 🎨 **Tailwind CSS v4**
 - 🔄 **React Router v7** (Data Mode)
-- 💾 **Supabase** (Backend)
+- 💾 **LocalStorage** (Client-side persistence)
 - 📧 **EmailJS** (Notifications)
 - ✍️ **Canvas API** (E-Signatures)
 
@@ -129,7 +139,7 @@ VITE_TELEGRAM_CHAT_ID=your_telegram_chat_id
     /utils
       pricingConfig.ts          # Pricing configuration utility
       emailNotification.ts      # EmailJS integration
-      supabaseClient.ts         # Supabase client
+      supabaseClient.ts         # localStorage quotation store
       emailConfig.ts            # Email configuration
       telegramNotification.ts   # Telegram bot integration
       smsVerification.ts        # SMS verification (future)
@@ -147,10 +157,6 @@ VITE_TELEGRAM_CHAT_ID=your_telegram_chat_id
 Create a `.env` file in the root directory:
 
 ```env
-# Supabase Configuration
-VITE_SUPABASE_URL=your_supabase_project_url
-VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
-
 # Optional: Telegram Bot (for notifications)
 VITE_TELEGRAM_BOT_TOKEN=your_telegram_bot_token
 VITE_TELEGRAM_CHAT_ID=your_telegram_chat_id
@@ -263,6 +269,12 @@ The system is **mobile-first** and fully responsive:
 
 ## 📄 Data Storage
 
+### Storage Policy
+
+- 이 프로젝트는 **Supabase를 사용하지 않습니다.**
+- 견적 데이터는 브라우저 `localStorage`에 저장됩니다.
+- 브라우저 캐시/스토리지 삭제 시 데이터가 사라질 수 있습니다.
+
 ### LocalStorage Keys
 
 | Key | Type | Description |
@@ -271,32 +283,7 @@ The system is **mobile-first** and fully responsive:
 | `contract_terms` | String | HTML contract terms |
 | `terms_visibility` | Boolean | Show/hide terms |
 | `email_config` | Object | EmailJS configuration |
-
-### Supabase Database
-
-#### `quotations` Table
-```sql
-CREATE TABLE quotations (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-  company_name TEXT NOT NULL,
-  contact_name TEXT NOT NULL,
-  phone TEXT NOT NULL,
-  email TEXT NOT NULL,
-  printer_model TEXT NOT NULL,
-  printer_size TEXT NOT NULL,
-  rental_period INTEGER NOT NULL,
-  quantity INTEGER DEFAULT 1,
-  start_date DATE NOT NULL,
-  include_software BOOLEAN DEFAULT false,
-  usage TEXT[], -- Printing usage types
-  usage_other TEXT,
-  total_price DECIMAL(10,2),
-  signature_url TEXT,
-  signed_at TIMESTAMP,
-  created_at TIMESTAMP DEFAULT NOW(),
-  updated_at TIMESTAMP DEFAULT NOW()
-);
-```
+| `quotations` | Array | Quotation records for admin list/history |
 
 ---
 

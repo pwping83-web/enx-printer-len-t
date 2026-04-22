@@ -249,7 +249,7 @@ export default function Custom() {
       savedQuotations.push(newQuotation);
       localStorage.setItem('quotations', JSON.stringify(savedQuotations));
 
-      // Update Supabase status
+      // Update stored quotation status
       if (currentQuotationId) {
         try {
           await updateQuotation(currentQuotationId, {
@@ -258,7 +258,7 @@ export default function Custom() {
             submitted_at: new Date().toISOString(),
           });
         } catch (error) {
-          console.error('Failed to update Supabase:', error);
+          console.error('Failed to update quotation status:', error);
         }
       }
 

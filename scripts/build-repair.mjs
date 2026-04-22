@@ -7,8 +7,10 @@ const repairRoot = path.resolve(projectRoot, 'apps', 'repair');
 const repairDist = path.resolve(repairRoot, 'dist');
 const publicRepair = path.resolve(projectRoot, 'public', 'repair');
 
+const npmCommand = process.platform === 'win32' ? 'npm.cmd' : 'npm';
+
 const run = (command, args, cwd = projectRoot) => {
-  const result = spawnSync(command, args, { cwd, stdio: 'inherit', shell: true });
+  const result = spawnSync(command, args, { cwd, stdio: 'inherit' });
   if (result.status !== 0) {
     process.exit(result.status ?? 1);
   }
@@ -20,10 +22,10 @@ if (!existsSync(repairRoot)) {
 }
 
 console.log('[build-repair] installing repair dependencies...');
-run('npm', ['ci'], repairRoot);
+run(npmCommand, ['ci'], repairRoot);
 
 console.log('[build-repair] building repair app with /repair base...');
-run('npm', ['run', 'build', '--', '--base=/repair/'], repairRoot);
+run(npmCommand, ['run', 'build', '--', '--base=/repair/'], repairRoot);
 
 if (!existsSync(repairDist)) {
   console.error('[build-repair] dist 생성 실패');

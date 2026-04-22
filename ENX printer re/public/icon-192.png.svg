@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192">
+  <!-- 파란색 배경 -->
+  <rect width="192" height="192" rx="36" fill="#3B82F6"/>
+  
+  <!-- 프린터 아이콘 (흰색) -->
+  <!-- 상단 용지 -->
+  <rect x="60" y="42" width="72" height="24" rx="3" fill="white"/>
+  
+  <!-- 프린터 본체 -->
+  <rect x="48" y="66" width="96" height="54" rx="6" fill="white"/>
+  <rect x="54" y="72" width="84" height="42" rx="3" fill="#3B82F6"/>
+  
+  <!-- 출력 용지 -->
+  <rect x="60" y="114" width="72" height="36" rx="3" fill="white"/>
+  <line x1="72" y1="126" x2="120" y2="126" stroke="#3B82F6" stroke-width="4" stroke-linecap="round"/>
+  <line x1="72" y1="138" x2="108" y2="138" stroke="#3B82F6" stroke-width="4" stroke-linecap="round"/>
+  
+  <!-- 상태 LED -->
+  <circle cx="126" cy="84" r="4.5" fill="#10B981"/>
+</svg>

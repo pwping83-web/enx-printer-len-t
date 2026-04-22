@@ -5,18 +5,55 @@
 
 ---
 
-## 🚀 Quick Start
+## 🚀 빠른 실행 및 배포
+
+### 1) 로컬 실행
 
 ```bash
-# Install dependencies
+# 의존성 설치
 npm install
 
-# Start development server
+# 개발 서버 실행
 npm run dev
 
-# Build for production
+# 프로덕션 빌드 확인
 npm run build
 ```
+
+- 개발 서버: `http://localhost:5173/`
+- 빌드 결과물: `dist/`
+
+### 2) Vercel 배포
+
+Vercel에서 **New Project**로 이 저장소를 연결한 뒤 아래 설정을 사용하세요.
+
+- **Project Name:** `enx-printer-len-t` (권장: 소문자 + 하이픈)
+- **Framework Preset:** `Vite`
+- **Root Directory:** `./`
+- **Build Command:** `npm run build`
+- **Output Directory:** `dist`
+- **Install Command:** `npm install`
+
+### 3) Environment Variables
+
+기능에 따라 Vercel 환경변수에 아래 값을 등록하세요.
+
+```env
+# Supabase (필수 기능 사용 시)
+VITE_SUPABASE_URL=your_supabase_project_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+
+# Telegram 알림 (선택)
+VITE_TELEGRAM_BOT_TOKEN=your_telegram_bot_token
+VITE_TELEGRAM_CHAT_ID=your_telegram_chat_id
+```
+
+### 4) 배포 후 점검 체크리스트
+
+- 고객 화면에서 견적 작성/서명 플로우 정상 동작
+- Admin 화면 접근 및 설정 저장 확인
+- 이메일 알림(EmailJS) 테스트 전송 확인
+- Supabase 데이터 저장/조회 정상 확인
 
 ---
 

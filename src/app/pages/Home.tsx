@@ -1,7 +1,8 @@
 import { Link, useNavigate } from 'react-router';
-import { Printer, Settings, ArrowRight } from 'lucide-react';
-import { useState } from 'react';
+import { Printer, ArrowRight } from 'lucide-react';
+import { useRef, useState } from 'react';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
+import { setAdminAuthenticated } from '../utils/adminAuth';
 
 import galleryImg1 from "figma:asset/8bb9bdf8f5ff1ff5cfaec95011b64ed9d243a6a7.png";
 import galleryImg2 from "figma:asset/86969de2d94472132bceabd573e6938d8b0b329c.png";
@@ -17,9 +18,30 @@ export default function Home() {
   const [showPasswordModal, setShowPasswordModal] = useState(false);
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const logoTapCountRef = useRef(0);
+  const logoTapResetTimerRef = useRef<number | null>(null);
+
+  const handleLogoSecretTap = () => {
+    if (logoTapResetTimerRef.current !== null) {
+      window.clearTimeout(logoTapResetTimerRef.current);
+    }
+
+    logoTapCountRef.current += 1;
+
+    if (logoTapCountRef.current >= 5) {
+      logoTapCountRef.current = 0;
+      setShowPasswordModal(true);
+      return;
+    }
+
+    logoTapResetTimerRef.current = window.setTimeout(() => {
+      logoTapCountRef.current = 0;
+    }, 1400);
+  };
 
   const handleAdminAccess = () => {
     if (password === 'kkus2011!!') {
+      setAdminAuthenticated(true);
       navigate('/admin');
       setShowPasswordModal(false);
       setPassword('');
@@ -38,20 +60,25 @@ export default function Home() {
     <div className="min-h-screen bg-gray-50 flex flex-col font-sans">
       {/* Header - Glassmorphism */}
       <header className="sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-gray-100 px-6 py-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
+        <div className="flex items-center">
+          <div
+            className="flex items-center gap-2.5"
+            onClick={handleLogoSecretTap}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                handleLogoSecretTap();
+              }
+            }}
+            aria-label="ENX Printer 홈"
+          >
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center shadow-sm">
               <Printer className="w-4 h-4 text-white" />
             </div>
             <span className="font-extrabold text-xl tracking-tight text-gray-900">MacaPrint</span>
           </div>
-          <button
-            onClick={() => setShowPasswordModal(true)}
-            className="p-2 text-gray-400 hover:text-indigo-600 transition-colors rounded-full hover:bg-indigo-50"
-            aria-label="관리자 설정"
-          >
-            <Settings className="w-5 h-5" />
-          </button>
         </div>
       </header>
 

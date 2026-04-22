@@ -298,8 +298,8 @@ export default function QuotationForm({
     <form onSubmit={handleSubmit} className="space-y-6">
 
       {/* ===== 거래 유형 선택 ===== */}
-      <div className="p-4 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl border-2 border-indigo-100">
-        <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">거래 유형</label>
+      <div className="p-3.5 bg-gradient-to-r from-indigo-50/70 to-purple-50/70 rounded-2xl border border-indigo-100">
+        <label className="block text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-2.5">거래 유형</label>
         <div className="grid grid-cols-2 gap-3">
           <button
             type="button"
@@ -307,15 +307,23 @@ export default function QuotationForm({
               ...prev,
               transactionType: 'rental',
             }))}
-            className={`p-3.5 border-2 rounded-xl text-center transition-all ${
+            className={`px-3 py-2.5 border rounded-xl text-left transition-all ${
               formData.transactionType !== 'purchase'
-                ? 'border-indigo-600 bg-white shadow-md'
-                : 'border-gray-200 bg-white/60 hover:border-indigo-300'
+                ? 'border-indigo-500 bg-white shadow-sm ring-1 ring-indigo-200'
+                : 'border-gray-200 bg-white/70 hover:border-indigo-300'
             }`}
           >
-            <div className="text-lg mb-0.5">🔄</div>
-            <div className="font-bold text-gray-900 text-sm">렌탈</div>
-            <div className="text-[10px] text-gray-500 mt-0.5">월 렌탈료 방식</div>
+            <div className="flex items-center gap-2.5">
+              <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
+                formData.transactionType !== 'purchase' ? 'bg-indigo-100' : 'bg-gray-100'
+              }`}>
+                <span className="text-sm">🔄</span>
+              </div>
+              <div>
+                <div className="font-bold text-gray-900 text-sm leading-none">렌탈</div>
+                <div className="text-[10px] text-gray-500 mt-1">월 렌탈료 방식</div>
+              </div>
+            </div>
           </button>
 
           <button
@@ -326,18 +334,26 @@ export default function QuotationForm({
               printerModel: 'Epson-3156-A4',
               printerSize: 'A4',
             }))}
-            className={`p-3.5 border-2 rounded-xl text-center transition-all relative overflow-hidden ${
+            className={`px-3 py-2.5 border rounded-xl text-left transition-all relative overflow-hidden ${
               formData.transactionType === 'purchase'
-                ? 'border-indigo-500 bg-white shadow-md'
-                : 'border-gray-200 bg-white/60 hover:border-indigo-300'
+                ? 'border-indigo-500 bg-white shadow-sm ring-1 ring-indigo-200'
+                : 'border-gray-200 bg-white/70 hover:border-indigo-300'
             }`}
           >
-            <div className="absolute top-0 right-0 bg-indigo-500 text-white text-[9px] font-semibold px-2 py-0.5 rounded-bl-lg">
+            <div className="absolute top-1.5 right-1.5 bg-indigo-500 text-white text-[9px] font-semibold px-2 py-0.5 rounded-full">
               특가
             </div>
-            <div className="text-lg mb-0.5">🛒</div>
-            <div className="font-bold text-gray-900 text-sm">구매</div>
-            <div className="text-[10px] text-gray-500 mt-0.5">Epson 3156 한정</div>
+            <div className="flex items-center gap-2.5">
+              <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
+                formData.transactionType === 'purchase' ? 'bg-indigo-100' : 'bg-gray-100'
+              }`}>
+                <span className="text-sm">🛒</span>
+              </div>
+              <div>
+                <div className="font-bold text-gray-900 text-sm leading-none">구매</div>
+                <div className="text-[10px] text-gray-500 mt-1">Epson 3156 한정</div>
+              </div>
+            </div>
           </button>
         </div>
       </div>

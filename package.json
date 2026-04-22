@@ -8,7 +8,8 @@
     "dev": "vite",
     "auto:save": "node scripts/auto-save.mjs",
     "auto:push": "git push",
-    "auto:ship": "npm run auto:save && npm run auto:push"
+    "auto:ship": "npm run auto:save && npm run auto:push",
+    "auto:watch": "node scripts/auto-watch.mjs"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",

@@ -56,9 +56,13 @@ VITE_TELEGRAM_CHAT_ID=your_telegram_chat_id
 ```bash
 # 변경사항 자동 저장(commit) + 자동 push
 npm run auto:ship
+
+# 실시간 감지: 수정할 때마다 자동 저장 + 자동 push
+npm run auto:watch
 ```
 
 - 로컬 자동 저장: `npm run auto:save`
+- 실시간 자동 저장/동기화: `npm run auto:watch`
 - 자동 배포 트리거: `main` 브랜치 push
 - GitHub Actions 시크릿 필요값:
   - `VERCEL_TOKEN`

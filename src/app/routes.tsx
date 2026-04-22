@@ -1,10 +1,19 @@
-import { createBrowserRouter } from 'react-router';
+import { Navigate, createBrowserRouter } from 'react-router';
 import Home from './pages/Home';
 import Admin from './pages/Admin';
 import Custom from './pages/Custom';
 import Success from './pages/Success';
 import Root from './pages/Root';
 import NotFound from './pages/NotFound';
+import { isAdminAuthenticated } from './utils/adminAuth';
+
+function ProtectedAdminRoute() {
+  if (!isAdminAuthenticated()) {
+    return <Navigate to="/" replace />;
+  }
+
+  return <Admin />;
+}
 
 /**
  * Router Configuration
@@ -33,7 +42,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'admin',
-        element: <Admin />,
+        element: <ProtectedAdminRoute />,
       },
       {
         path: 'success',

@@ -1,4 +1,0 @@
-            // ✅ handleImageChange에서 이미 압축된 파일 사용 (이중 압축 방지)
-            const file = originalFile;
-            
-            const timestamp = Date.now();

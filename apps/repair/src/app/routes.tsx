@@ -5,6 +5,12 @@ import { AdminDashboard } from "@/app/components/AdminDashboard";
 import { SuccessPage } from "@/app/components/SuccessPage";
 import { NotFound } from "@/app/components/NotFound";
 
+const normalizedBase = (() => {
+  const base = import.meta.env.BASE_URL || "/";
+  if (base === "/") return "/";
+  return base.endsWith("/") ? base.slice(0, -1) : base;
+})();
+
 /**
  * Application Routes Configuration
  * 
@@ -37,5 +43,5 @@ export const router = createBrowserRouter([
     Component: NotFound,
   },
 ], {
-  basename: import.meta.env.BASE_URL,
+  basename: normalizedBase,
 });

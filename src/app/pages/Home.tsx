@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router';
-import { Printer, Settings, ArrowRight } from 'lucide-react';
+import { Printer, Settings, ArrowRight, Wrench } from 'lucide-react';
 import { useState } from 'react';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 
@@ -112,6 +112,14 @@ export default function Home() {
             >
               무료 견적 시작하기
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
+
+            <Link
+              to="/repair"
+              className="mt-3 group flex items-center justify-center gap-2 w-full max-w-xs py-3.5 bg-gray-900/70 backdrop-blur-sm text-white rounded-2xl font-bold text-base border border-white/20 active:scale-[0.98] transition-all"
+            >
+              프린터 수리 접수
+              <Wrench className="w-4 h-4" />
             </Link>
           </div>
         </section>

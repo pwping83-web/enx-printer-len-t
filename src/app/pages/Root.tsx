@@ -1,5 +1,5 @@
 import { Outlet, Link, useLocation } from 'react-router';
-import { Home, FileText, Settings, Menu, X, Printer, Sparkles } from 'lucide-react';
+import { Home, FileText, Settings, Menu, X, Printer, Sparkles, Wrench } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { Toaster } from 'sonner';
 import { motion, AnimatePresence } from 'motion/react';
@@ -18,6 +18,7 @@ export default function Root() {
   const [scrolled, setScrolled] = useState(false);
   const isHome = location.pathname === '/';
   const isCustom = location.pathname === '/custom';
+  const isRepair = location.pathname.startsWith('/repair');
   const isAdmin = location.pathname.startsWith('/admin');
 
   // Favicon auto-generation
@@ -76,6 +77,7 @@ export default function Root() {
   const navItems = [
     { to: '/', icon: Home, label: '홈', isActive: isHome },
     { to: '/custom', icon: FileText, label: '견적작성', isActive: isCustom },
+    { to: '/repair', icon: Wrench, label: '수리접수', isActive: isRepair },
     { to: '/admin', icon: Settings, label: '관리자', isActive: isAdmin },
   ];
 

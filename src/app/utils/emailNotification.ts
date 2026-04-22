@@ -272,7 +272,7 @@ export const sendSignatureEmail = async (data: {
       rentalPeriod: data.rentalPeriod,
       usage: '마카롱 프린터 렌탈',
       startDate: data.startDate,
-      totalPrice: `${(data.totalPrice / 10000).toFixed(0)}만원`,
+      totalPrice: data.totalPrice,
     });
 
     console.log('📧 서명 완료 이메일 전송 시작:', {

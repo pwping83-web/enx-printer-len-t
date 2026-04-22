@@ -908,27 +908,6 @@ export default function QuotationForm({
               </label>
             </div>
 
-            {/* Installation Fee Option */}
-            <div className="mt-3 p-4 bg-gray-50 rounded-lg border border-gray-300">
-              <label className="flex items-start gap-3 cursor-pointer">
-                <input
-                  type="checkbox"
-                  name="includeInstallationFee"
-                  checked={formData.includeInstallationFee}
-                  onChange={handleCheckboxChange}
-                  className="mt-1 w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
-                />
-                <div className="flex-1">
-                  <div className="font-medium text-gray-900">
-                    최초 설치비 포함
-                  </div>
-                  <div className="text-xs text-gray-500 mt-0.5">
-                    체크 해제 시 설치비는 청구하지 않습니다.
-                  </div>
-                </div>
-              </label>
-            </div>
-
             {/* Price Display */}
             <div className="mt-6 p-6 bg-white rounded-xl border-2 border-gray-200 shadow-sm">
               <div className="space-y-2">
@@ -983,10 +962,17 @@ export default function QuotationForm({
                     </span>
                   </div>
 
-                  <div className="flex justify-between items-center mb-1.5">
-                    <span className="text-[11px] text-gray-600">
-                      최초 설치비
-                    </span>
+                  <div className="flex justify-between items-center mb-1.5 gap-3">
+                    <label className="inline-flex items-center gap-2 cursor-pointer select-none">
+                      <input
+                        type="checkbox"
+                        name="includeInstallationFee"
+                        checked={formData.includeInstallationFee}
+                        onChange={handleCheckboxChange}
+                        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
+                      />
+                      <span className="text-[11px] text-gray-700 font-medium">최초 설치비 포함</span>
+                    </label>
                     <span className="text-xs font-semibold text-gray-800">
                       {formData.includeInstallationFee ? formatPriceKorean(installationFee) : '없음'}
                     </span>

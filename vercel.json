@@ -1,6 +1,14 @@
 {
   "routes": [
     {
+      "src": "^/assets/(.*)$",
+      "dest": "/assets/$1"
+    },
+    {
+      "src": "^/favicon\\.svg$",
+      "dest": "/favicon.svg"
+    },
+    {
       "src": "^/repair/assets/(.*)$",
       "dest": "/repair/assets/$1"
     },

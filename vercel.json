@@ -1,28 +1,15 @@
 {
-  "rewrites": [
+  "routes": [
     {
-      "source": "/repair",
-      "destination": "/repair/index.html"
+      "handle": "filesystem"
     },
     {
-      "source": "/repair/",
-      "destination": "/repair/index.html"
+      "src": "/repair(?:/.*)?",
+      "dest": "/repair/index.html"
     },
     {
-      "source": "/repair/customer/request",
-      "destination": "/repair/index.html"
-    },
-    {
-      "source": "/repair/admin",
-      "destination": "/repair/index.html"
-    },
-    {
-      "source": "/repair/success",
-      "destination": "/repair/index.html"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
   ]
 }

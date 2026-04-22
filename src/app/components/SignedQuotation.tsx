@@ -52,7 +52,9 @@ export function SignedQuotation({
   const monthlyPrice = baseMonthlyPrice;
   const totalPrice = monthlyPrice * data.rentalPeriod * data.quantity;
   const installationFee = selectedModel?.installationFee || 170000;
-  const subtotal = totalPrice + installationFee;
+  const includeInstallationFee = data.includeInstallationFee !== false;
+  const appliedInstallationFee = includeInstallationFee ? installationFee : 0;
+  const subtotal = totalPrice + appliedInstallationFee;
   const vat = Math.round(subtotal * 0.1);
   const grandTotalWithVat = subtotal + vat;
 
@@ -194,7 +196,9 @@ export function SignedQuotation({
 
               <div className="flex justify-between items-center text-sm">
                 <span className="text-gray-500">최초 설치비</span>
-                <span className="font-semibold text-gray-900">{installationFee.toLocaleString()}원</span>
+                <span className="font-semibold text-gray-900">
+                  {includeInstallationFee ? `${installationFee.toLocaleString()}원` : '없음'}
+                </span>
               </div>
 
               {/* Grand Total */}

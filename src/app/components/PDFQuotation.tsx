@@ -50,7 +50,9 @@ export function PDFQuotation({ data, signature }: PDFQuotationProps) {
 
   const totalPrice = monthlyPrice * data.rentalPeriod * data.quantity;
   const installationFee = selectedModel?.installationFee || 170000;
-  const subtotal = totalPrice + installationFee;
+  const includeInstallationFee = data.includeInstallationFee !== false;
+  const appliedInstallationFee = includeInstallationFee ? installationFee : 0;
+  const subtotal = totalPrice + appliedInstallationFee;
   const vat = Math.round(subtotal * 0.1);
   const grandTotalWithVat = subtotal + vat;
 
@@ -247,7 +249,7 @@ export function PDFQuotation({ data, signature }: PDFQuotationProps) {
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '3px' }}>
             <span>설치비</span>
-            <span>{installationFee.toLocaleString()}원</span>
+            <span>{includeInstallationFee ? `${installationFee.toLocaleString()}원` : '없음'}</span>
           </div>
           <div style={{ 
             display: 'flex', 

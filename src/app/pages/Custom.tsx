@@ -104,7 +104,8 @@ export default function Custom() {
         'Epson-3880-P800-A2': 170000,
       };
       const installationFee = installationFees[data.printerModel] || 170000;
-      grandTotal = totalRentalCost + installationFee;
+      const appliedInstallationFee = data.includeInstallationFee === false ? 0 : installationFee;
+      grandTotal = totalRentalCost + appliedInstallationFee;
     }
 
     const quotationForSave = {

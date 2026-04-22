@@ -570,8 +570,10 @@ export default function Admin() {
                       if (!model) return <div className="text-red-500 text-sm">모델 정보를 찾을 수 없습니다.</div>;
                       const baseMonthlyPrice = calculateMonthlyPrice(model.pricing, selectedQuotation.data.rentalPeriod);
                       const totalPrice = baseMonthlyPrice * selectedQuotation.data.rentalPeriod * selectedQuotation.data.quantity;
+                      const includeInstallationFee = selectedQuotation.data.includeInstallationFee !== false;
+                      const appliedInstallationFee = includeInstallationFee ? model.installationFee : 0;
                       const vat = Math.round(totalPrice * 0.1);
-                      const totalWithVAT = totalPrice + vat + model.installationFee;
+                      const totalWithVAT = totalPrice + vat + appliedInstallationFee;
 
                       return (
                         <div className="space-y-2.5">
@@ -589,7 +591,9 @@ export default function Admin() {
                           </div>
                           <div className="flex justify-between items-center">
                             <span className="text-xs text-gray-500">설치비</span>
-                            <span className="text-sm font-semibold text-gray-900">{model.installationFee.toLocaleString()}원</span>
+                            <span className="text-sm font-semibold text-gray-900">
+                              {includeInstallationFee ? `${model.installationFee.toLocaleString()}원` : '없음'}
+                            </span>
                           </div>
                           <div className="border-t border-indigo-200 pt-2.5 flex justify-between items-center">
                             <span className="text-sm font-bold text-gray-900">총 금액</span>

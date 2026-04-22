@@ -29,6 +29,7 @@ export interface QuotationData {
   quantity: number;           // Number of printers to rent
   startDate: string;          // Rental start date (YYYY-MM-DD)
   includeSoftware: boolean;   // Include printing software (15,000 KRW/month)
+  includeInstallationFee: boolean; // Include one-time installation fee
   usage?: string[];           // Printing usage types (macaron, rice cake, cake, other)
   usageOther?: string;        // Custom usage description
   totalPrice?: number;        // Total calculated price
@@ -135,6 +136,7 @@ export default function QuotationForm({
     quantity: 1,
     startDate: new Date().toISOString().split('T')[0],
     includeSoftware: false,
+    includeInstallationFee: true,
     usage: [],                           // Empty: user must select at least one
     transactionType: 'rental',          // Default: rental
   });
@@ -210,7 +212,22 @@ export default function QuotationForm({
   // Handle form submission
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit && onSubmit(formData);
+    if (!onSubmit) return;
+
+    if (formData.transactionType === 'purchase') {
+      const purchaseSupplyAmount = PURCHASE_PRICE * formData.quantity;
+      onSubmit({
+        ...formData,
+        includeInstallationFee: false,
+        totalPrice: purchaseSupplyAmount,
+      });
+      return;
+    }
+
+    onSubmit({
+      ...formData,
+      totalPrice: Math.round(grandTotal),
+    });
   };
 
   // Handle input changes
@@ -269,10 +286,11 @@ export default function QuotationForm({
 
   // Initial installation fee (renewal contract is 0 KRW)
   const installationFee = selectedModel ? selectedModel.installationFee : 170000;
+  const appliedInstallationFee = formData.includeInstallationFee ? installationFee : 0;
 
   // Calculate total rental cost (total monthly price * rental period)
   const totalRentalCost = totalMonthlyPrice * formData.rentalPeriod;
-  const grandTotal = totalRentalCost + installationFee;
+  const grandTotal = totalRentalCost + appliedInstallationFee;
   const vatAmount = Math.round(grandTotal * 0.1);
   const grandTotalWithVat = grandTotal + vatAmount;
 
@@ -888,6 +906,27 @@ export default function QuotationForm({
               </label>
             </div>
 
+            {/* Installation Fee Option */}
+            <div className="mt-3 p-4 bg-gray-50 rounded-lg border border-gray-300">
+              <label className="flex items-start gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  name="includeInstallationFee"
+                  checked={formData.includeInstallationFee}
+                  onChange={handleCheckboxChange}
+                  className="mt-1 w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
+                />
+                <div className="flex-1">
+                  <div className="font-medium text-gray-900">
+                    최초 설치비 포함
+                  </div>
+                  <div className="text-xs text-gray-500 mt-0.5">
+                    체크 해제 시 설치비는 청구하지 않습니다.
+                  </div>
+                </div>
+              </label>
+            </div>
+
             {/* Price Display */}
             <div className="mt-6 p-6 bg-white rounded-xl border-2 border-gray-200 shadow-sm">
               <div className="space-y-2">
@@ -947,7 +986,7 @@ export default function QuotationForm({
                       최초 설치비
                     </span>
                     <span className="text-xs font-semibold text-gray-800">
-                      {formatPriceKorean(installationFee)}
+                      {formData.includeInstallationFee ? formatPriceKorean(installationFee) : '없음'}
                     </span>
                   </div>
 

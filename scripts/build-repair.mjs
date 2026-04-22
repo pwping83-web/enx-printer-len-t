@@ -1,18 +1,17 @@
 import { cpSync, existsSync, mkdirSync, rmSync } from 'node:fs';
 import path from 'node:path';
-import { spawnSync } from 'node:child_process';
+import { execSync } from 'node:child_process';
 
 const projectRoot = process.cwd();
 const repairRoot = path.resolve(projectRoot, 'apps', 'repair');
 const repairDist = path.resolve(repairRoot, 'dist');
 const publicRepair = path.resolve(projectRoot, 'public', 'repair');
 
-const npmCommand = process.platform === 'win32' ? 'npm.cmd' : 'npm';
-
-const run = (command, args, cwd = projectRoot) => {
-  const result = spawnSync(command, args, { cwd, stdio: 'inherit' });
-  if (result.status !== 0) {
-    process.exit(result.status ?? 1);
+const run = (command, cwd = projectRoot) => {
+  try {
+    execSync(command, { cwd, stdio: 'inherit' });
+  } catch {
+    process.exit(1);
   }
 };
 
@@ -22,10 +21,10 @@ if (!existsSync(repairRoot)) {
 }
 
 console.log('[build-repair] installing repair dependencies...');
-run(npmCommand, ['ci'], repairRoot);
+run('npm ci', repairRoot);
 
 console.log('[build-repair] building repair app with /repair base...');
-run(npmCommand, ['run', 'build', '--', '--base=/repair/'], repairRoot);
+run('npm run build -- --base=/repair/', repairRoot);
 
 if (!existsSync(repairDist)) {
   console.error('[build-repair] dist 생성 실패');

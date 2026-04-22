@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Calendar, Building2, User, Phone, Mail, CalendarIcon, Image as ImageIcon, X, Shield, Check, Lock } from 'lucide-react';
+import { Calendar, Building2, User, Phone, Mail, CalendarIcon, Image as ImageIcon, X, Shield, Check, Lock, Repeat2, ShoppingBag } from 'lucide-react';
 import { getPricingConfig, PricingConfig } from '../utils/pricingConfig';
 import { DayPicker } from 'react-day-picker';
 import { format } from 'date-fns';
@@ -316,9 +316,9 @@ export default function QuotationForm({
           >
             <div className="flex items-center gap-2.5">
               <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
-                formData.transactionType !== 'purchase' ? 'bg-indigo-100' : 'bg-gray-100'
+                formData.transactionType !== 'purchase' ? 'bg-indigo-100 text-indigo-600' : 'bg-gray-100 text-gray-500'
               }`}>
-                <span className="text-sm">🔄</span>
+                <Repeat2 className="w-4 h-4" />
               </div>
               <div>
                 <div className="font-bold text-gray-900 text-sm leading-none">렌탈</div>
@@ -346,9 +346,9 @@ export default function QuotationForm({
             </div>
             <div className="flex items-center gap-2.5">
               <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
-                formData.transactionType === 'purchase' ? 'bg-indigo-100' : 'bg-gray-100'
+                formData.transactionType === 'purchase' ? 'bg-indigo-100 text-indigo-600' : 'bg-gray-100 text-gray-500'
               }`}>
-                <span className="text-sm">🛒</span>
+                <ShoppingBag className="w-4 h-4" />
               </div>
               <div>
                 <div className="font-bold text-gray-900 text-sm leading-none">구매</div>

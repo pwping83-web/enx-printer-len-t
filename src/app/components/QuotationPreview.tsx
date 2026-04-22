@@ -29,6 +29,7 @@ export function QuotationPreview({ data }: QuotationPreviewProps) {
 
   // Purchase pricing
   const PURCHASE_PRICE = 2000000;
+  const PURCHASE_PRICE_LABEL = '200만원';
   const purchaseSubtotal = PURCHASE_PRICE * data.quantity;
   const purchaseVat = Math.round(purchaseSubtotal * 0.1);
   const purchaseGrandTotal = purchaseSubtotal + purchaseVat;
@@ -181,7 +182,7 @@ export function QuotationPreview({ data }: QuotationPreviewProps) {
             <div className="space-y-2.5">
               <div className="flex justify-between items-center text-sm">
                 <span className="text-gray-500">판매 특가 (단가)</span>
-                <span className="font-semibold text-gray-900">{PURCHASE_PRICE.toLocaleString()}원</span>
+                <span className="font-semibold text-gray-900">{PURCHASE_PRICE_LABEL}</span>
               </div>
               {data.quantity > 1 && (
                 <div className="flex justify-between items-center text-sm">

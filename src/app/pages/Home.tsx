@@ -101,7 +101,7 @@ export default function Home() {
             <div className="flex items-center gap-2 mb-4">
               <div className="flex items-center gap-2 px-4 py-2 bg-white/15 backdrop-blur-sm rounded-full border border-white/30">
                 <span className="text-white/80 text-xs font-medium">Epson 3156 A4 판매 특가</span>
-                <span className="text-white font-bold text-xs">2,000,000원</span>
+                <span className="text-white font-bold text-xs">200만원</span>
               </div>
             </div>
 

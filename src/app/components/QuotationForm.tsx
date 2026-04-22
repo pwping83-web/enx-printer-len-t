@@ -260,6 +260,7 @@ export default function QuotationForm({
 
   // Purchase special price constants (Epson 3156 A4 only)
   const PURCHASE_PRICE = 2000000;
+  const PURCHASE_PRICE_LABEL = '200만원';
   const purchaseVatAmount = Math.round(PURCHASE_PRICE * 0.1);
   const purchaseTotalWithVat = PURCHASE_PRICE + purchaseVatAmount;
   
@@ -537,7 +538,7 @@ export default function QuotationForm({
                     <p className="text-xs text-gray-500 mt-0.5">식용 프린터 · 입문용 · 소형</p>
                   </div>
                   <div className="text-right">
-                    <div className="text-xl font-black text-gray-900">2,000,000원</div>
+                    <div className="text-xl font-black text-gray-900">{PURCHASE_PRICE_LABEL}</div>
                     <div className="text-[11px] text-gray-400 mt-0.5">부가세 별도</div>
                   </div>
                 </div>
@@ -591,7 +592,7 @@ export default function QuotationForm({
               <div className="p-4 bg-white rounded-xl border border-gray-200 space-y-2.5">
                 <div className="flex justify-between items-center text-sm">
                   <span className="text-gray-500">판매 특가 (단가)</span>
-                  <span className="font-medium text-gray-800">{PURCHASE_PRICE.toLocaleString()}원</span>
+                  <span className="font-medium text-gray-800">{PURCHASE_PRICE_LABEL}</span>
                 </div>
                 {formData.quantity > 1 && (
                   <div className="flex justify-between items-center text-sm">

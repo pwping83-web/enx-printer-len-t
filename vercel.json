@@ -9,7 +9,15 @@
       "destination": "/repair/index.html"
     },
     {
-      "source": "/repair/:path*",
+      "source": "/repair/customer/request",
+      "destination": "/repair/index.html"
+    },
+    {
+      "source": "/repair/admin",
+      "destination": "/repair/index.html"
+    },
+    {
+      "source": "/repair/success",
       "destination": "/repair/index.html"
     },
     {

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마카롱 프린터 렌탈 견적서</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; background-color: #f5f7fa;">
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color: #f5f7fa; padding: 40px 20px;">
+        <tr>
+            <td align="center">
+                <!-- 메인 컨테이너 -->
+                <table role="presentation" width="600" cellspacing="0" cellpadding="0" border="0" style="background-color: #ffffff; border-radius: 16px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); overflow: hidden; max-width: 100%;">
+                    
+                    <!-- 헤더 -->
+                    <tr>
+                        <td style="background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); padding: 40px 30px; text-align: center;">
+                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                <tr>
+                                    <td align="center">
+                                        <div style="width: 60px; height: 60px; background-color: #ffffff; border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 16px;">
+                                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                                                <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                                                <rect x="6" y="14" width="12" height="8"></rect>
+                                            </svg>
+                                        </div>
+                                        <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: bold;">마카롱 프린터 렌탈</h1>
+                                        <p style="margin: 12px 0 0 0; color: #e0e7ff; font-size: 16px;">새로운 견적서 요청</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- 알림 배지 -->
+                    <tr>
+                        <td style="padding: 30px 30px 20px 30px;">
+                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                <tr>
+                                    <td style="background-color: #dbeafe; border-left: 4px solid #2563eb; padding: 16px; border-radius: 8px;">
+                                        <p style="margin: 0; color: #1e40af; font-size: 14px; font-weight: 600;">
+                                            🔔 새로운 견적서 요청이 도착했습니다
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- 고객 정보 -->
+                    <tr>
+                        <td style="padding: 20px 30px;">
+                            <h2 style="margin: 0 0 20px 0; color: #1f2937; font-size: 20px; font-weight: bold; border-bottom: 2px solid #e5e7eb; padding-bottom: 12px;">
+                                📋 고객 정보
+                            </h2>
+                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                <tr>
+                                    <td style="padding: 12px 0; border-bottom: 1px solid #f3f4f6;">
+                                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                            <tr>
+                                                <td width="140" style="color: #6b7280; font-size: 14px; font-weight: 600;">회사명</td>
+                                                <td style="color: #111827; font-size: 14px; font-weight: 500;">{{company_name}}</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 12px 0; border-bottom: 1px solid #f3f4f6;">
+                                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                            <tr>
+                                                <td width="140" style="color: #6b7280; font-size: 14px; font-weight: 600;">담당자명</td>
+                                                <td style="color: #111827; font-size: 14px; font-weight: 500;">{{contact_name}}</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 12px 0; border-bottom: 1px solid #f3f4f6;">
+                                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                            <tr>
+                                                <td width="140" style="color: #6b7280; font-size: 14px; font-weight: 600;">연락처</td>
+                                                <td style="color: #111827; font-size: 14px; font-weight: 500;">{{phone}}</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 12px 0;">
+                                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                            <tr>
+                                                <td width="140" style="color: #6b7280; font-size: 14px; font-weight: 600;">이메일</td>
+                                                <td style="color: #2563eb; font-size: 14px; font-weight: 500;">{{email}}</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- 견적 상세 정보 -->
+                    <tr>
+                        <td style="padding: 20px 30px;">
+                            <h2 style="margin: 0 0 20px 0; color: #1f2937; font-size: 20px; font-weight: bold; border-bottom: 2px solid #e5e7eb; padding-bottom: 12px;">
+                                🖨️ 견적 상세
+                            </h2>
+                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                <tr>
+                                    <td style="padding: 12px 0; border-bottom: 1px solid #f3f4f6;">
+                                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                            <tr>
+                                                <td width="140" style="color: #6b7280; font-size: 14px; font-weight: 600;">프린터 모델</td>
+                                                <td style="color: #111827; font-size: 14px; font-weight: 700;">{{printer_model}}</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 12px 0; border-bottom: 1px solid #f3f4f6;">
+                                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                            <tr>
+                                                <td width="140" style="color: #6b7280; font-size: 14px; font-weight: 600;">렌탈 기간</td>
+                                                <td style="color: #111827; font-size: 14px; font-weight: 500;">{{rental_period}}</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 12px 0; border-bottom: 1px solid #f3f4f6;">
+                                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                            <tr>
+                                                <td width="140" style="color: #6b7280; font-size: 14px; font-weight: 600;">사용 용도</td>
+                                                <td style="color: #111827; font-size: 14px; font-weight: 500;">{{usage}}</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 12px 0; border-bottom: 1px solid #f3f4f6;">
+                                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                            <tr>
+                                                <td width="140" style="color: #6b7280; font-size: 14px; font-weight: 600;">시작일</td>
+                                                <td style="color: #111827; font-size: 14px; font-weight: 500;">{{start_date}}</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 16px 0 0 0;">
+                                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color: #fef3c7; border-radius: 8px; padding: 16px;">
+                                            <tr>
+                                                <td width="140" style="color: #92400e; font-size: 16px; font-weight: 700;">총 견적 금액</td>
+                                                <td style="color: #d97706; font-size: 22px; font-weight: 900; text-align: right;">{{total_price}}</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- 액션 버튼 -->
+                    <tr>
+                        <td style="padding: 30px 30px 40px 30px; text-align: center;">
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center">
+                                <tr>
+                                    <td style="border-radius: 12px; background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); box-shadow: 0 4px 6px rgba(37, 99, 235, 0.3);">
+                                        <a href="{{admin_link}}" style="display: inline-block; padding: 16px 40px; color: #ffffff; text-decoration: none; font-size: 16px; font-weight: bold; border-radius: 12px;">
+                                            🔍 관리자 페이지에서 확인
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- 추가 정보 -->
+                    <tr>
+                        <td style="padding: 20px 30px 30px 30px; background-color: #f9fafb; border-top: 1px solid #e5e7eb;">
+                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                <tr>
+                                    <td style="color: #6b7280; font-size: 12px; line-height: 1.6;">
+                                        <p style="margin: 0 0 8px 0;"><strong>견적서 ID:</strong> {{quotation_id}}</p>
+                                        <p style="margin: 0 0 8px 0;"><strong>요청 시간:</strong> {{created_at}}</p>
+                                        <p style="margin: 0; color: #9ca3af; font-size: 11px;">
+                                            본 이메일은 자동으로 발송되었습니다. 답장하지 마세요.
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- 푸터 -->
+                    <tr>
+                        <td style="padding: 30px; text-align: center; background-color: #111827; border-radius: 0 0 16px 16px;">
+                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                <tr>
+                                    <td align="center">
+                                        <div style="width: 40px; height: 40px; background-color: #2563eb; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 12px;">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                                                <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                                                <rect x="6" y="14" width="12" height="8"></rect>
+                                            </svg>
+                                        </div>
+                                        <h3 style="margin: 0 0 8px 0; color: #ffffff; font-size: 18px; font-weight: bold;">Macaron Print</h3>
+                                        <p style="margin: 0 0 4px 0; color: #9ca3af; font-size: 13px;">이앤엑스(ENX) | 사업자번호: 302-47-00920</p>
+                                        <p style="margin: 0 0 4px 0; color: #9ca3af; font-size: 13px;">인천 중구 운북동 506-59 | 010-4639-2673</p>
+                                        <p style="margin: 12px 0 0 0; color: #6b7280; font-size: 11px;">© 2024 ENX. All rights reserved.</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

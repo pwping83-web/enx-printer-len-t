@@ -1,17 +1,17 @@
 {
-  "redirects": [
+  "rewrites": [
     {
       "source": "/repair",
-      "destination": "https://kernel-afar-30685539.figma.site/",
-      "permanent": false
+      "destination": "/repair/index.html"
+    },
+    {
+      "source": "/repair/",
+      "destination": "/repair/index.html"
     },
     {
       "source": "/repair/:path*",
-      "destination": "https://kernel-afar-30685539.figma.site/:path*",
-      "permanent": false
-    }
-  ],
-  "rewrites": [
+      "destination": "/repair/index.html"
+    },
     {
       "source": "/(.*)",
       "destination": "/index.html"

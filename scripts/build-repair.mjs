@@ -3,7 +3,7 @@ import path from 'node:path';
 import { execSync } from 'node:child_process';
 
 const projectRoot = process.cwd();
-const repairRoot = path.resolve(projectRoot, 'apps', 'repair');
+const repairRoot = path.resolve(projectRoot, 'repair');
 const repairDist = path.resolve(repairRoot, 'dist');
 const publicRepair = path.resolve(projectRoot, 'public', 'repair');
 
@@ -16,7 +16,7 @@ const run = (command, cwd = projectRoot) => {
 };
 
 if (!existsSync(repairRoot)) {
-  console.error('[build-repair] apps/repair 폴더를 찾을 수 없습니다.');
+  console.error('[build-repair] repair 폴더를 찾을 수 없습니다.');
   process.exit(1);
 }
 

@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "build": "node scripts/build-repair.mjs && vite build",
+    "build": "vite build",
     "dev": "vite",
     "auto:save": "node scripts/auto-save.mjs",
     "auto:push": "git push",

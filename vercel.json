@@ -9,22 +9,6 @@
       "dest": "/favicon.svg"
     },
     {
-      "src": "^/repair/assets/(.*)$",
-      "dest": "/repair/assets/$1"
-    },
-    {
-      "src": "^/repair/(favicon\\.svg|icon-192\\.png\\.svg|icon-512\\.png\\.svg|manifest\\.json|logo\\.svg)$",
-      "dest": "/repair/$1"
-    },
-    {
-      "src": "^/repair/?$",
-      "dest": "/repair/index.html"
-    },
-    {
-      "src": "^/repair/(customer/request|admin|success)/?$",
-      "dest": "/repair/index.html"
-    },
-    {
       "src": "^/(.*)$",
       "dest": "/index.html"
     }

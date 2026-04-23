@@ -27,11 +27,16 @@ jobs:
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
 
-      - name: Pull Vercel project settings
-        run: vercel pull --yes --environment=production --token="${{ secrets.VERCEL_TOKEN }}"
-        env:
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      # `vercel pull`는 CI에서 토큰/권한 이슈로 자주 끊깁니다. Vercel 가이드대로
+      # 시크릿의 org/project ID로 project.json만 두면 pull 없이 build/deploy 가능합니다.
+      # 참고: https://vercel.com/kb/guide/how-can-i-use-github-actions-with-vercel
+      - name: Write Vercel project link (.vercel/project.json)
+        run: |
+          mkdir -p .vercel
+          jq -n \
+            --arg org "${{ secrets.VERCEL_ORG_ID }}" \
+            --arg prj "${{ secrets.VERCEL_PROJECT_ID }}" \
+            '{orgId:$org,projectId:$prj}' > .vercel/project.json
 
       - name: Build Vercel artifacts
         run: vercel build --prod --token="${{ secrets.VERCEL_TOKEN }}"
